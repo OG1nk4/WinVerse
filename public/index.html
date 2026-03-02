@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WinVerse — Rifa PC Gamer</title>
+  <meta name="description"
+    content="Concorra a um PC Gamer completo com i7, Nvidia e 480GB SSD! Escolha seu número e pague via PIX.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="hero">
+    <div class="hero-glow"></div>
+    <div class="container">
+      <div class="hero-badge">🎰 RIFA ONLINE</div>
+      <h1 class="hero-title">Win<span class="accent">Verse</span></h1>
+      <p class="hero-subtitle">Concorra a um PC Gamer completo! Escolha seus números da sorte.</p>
+    </div>
+  </header>
+
+  <!-- ========== PRÊMIO ========== -->
+  <section class="prize-section">
+    <div class="container">
+      <div class="prize-card">
+        <div class="prize-image">
+          <img src="https://loja.prsim.com.br/wp-content/uploads/2025/07/a-pc-narok-preto-gpu-m-002_28.jpg"
+            alt="PC Gamer Completo">
+        </div>
+        <div class="prize-info">
+          <span class="prize-tag">🏆 PRÊMIO</span>
+          <h2 class="prize-title">PC Gamer Completo</h2>
+          <p class="prize-desc">Processador <strong>Intel Core i7</strong>, placa de vídeo <strong>NVIDIA</strong>,
+            <strong>480GB SSD</strong> e muito mais. Máquina pronta para rodar qualquer jogo!
+          </p>
+          <div class="prize-value">
+            <span class="label">Valor por número</span>
+            <span class="value" id="prize-value">R$ 20,00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== LEGENDA ========== -->
+  <section class="legend-section">
+    <div class="container">
+      <div class="legend">
+        <div class="legend-item">
+          <span class="legend-dot livre"></span>
+          <span>Livre</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot selecionado"></span>
+          <span>Selecionado</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot pendente"></span>
+          <span>Pendente</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot pago"></span>
+          <span>Pago</span>
+        </div>
+      </div>
+      <div class="stats-bar">
+        <span id="stats-livres">100 livres</span>
+        <span id="stats-pendentes">0 pendentes</span>
+        <span id="stats-pagos">0 pagos</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== GRADE DE NÚMEROS ========== -->
+  <section class="grid-section">
+    <div class="container">
+      <div class="numbers-grid" id="numbers-grid">
+        <!-- Gerado via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BARRA DE CHECKOUT FLUTUANTE ========== -->
+  <div class="checkout-bar" id="checkout-bar">
+    <div class="checkout-content">
+      <div class="checkout-info">
+        <div class="checkout-badge">
+          <span id="checkout-count">0</span> selecionado(s)
+        </div>
+        <div class="checkout-nums" id="checkout-numbers"></div>
+        <div class="checkout-total">Total: <strong id="checkout-total">R$ 0,00</strong></div>
+      </div>
+      <div class="checkout-actions">
+        <button class="btn-clear" id="btn-clear-selection">✕ Limpar</button>
+        <button class="btn-checkout-go" id="btn-checkout">Finalizar Compra →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== MODAL DE RESERVA (multi-número) ========== -->
+  <div class="modal-overlay" id="modal-reserve">
+    <div class="modal">
+      <button class="modal-close" id="btn-close-reserve">&times;</button>
+      <div class="modal-header">
+        <h3>Finalizar Compra</h3>
+      </div>
+      <div class="modal-numbers-list" id="modal-numbers-display">
+        <!-- Badges dos números selecionados -->
+      </div>
+      <p class="modal-summary" id="modal-summary">1 número — Total: R$ 20,00</p>
+      <form id="form-reserve" class="modal-form">
+        <div class="input-group">
+          <label for="input-name">Seu nome</label>
+          <input type="text" id="input-name" placeholder="Digite seu nome completo" required>
+        </div>
+        <div class="input-group">
+          <label for="input-whatsapp">WhatsApp</label>
+          <input type="tel" id="input-whatsapp" placeholder="(00) 00000-0000" required>
+        </div>
+        <button type="submit" class="btn-primary" id="btn-submit-reserve">
+          <span class="btn-text">Reservar e Pagar via PIX</span>
+          <span class="btn-loader" style="display:none;">
+            <span class="spinner"></span> Gerando PIX...
+          </span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========== MODAL PIX ========== -->
+  <div class="modal-overlay" id="modal-pix">
+    <div class="modal modal-pix">
+      <button class="modal-close" id="btn-close-pix">&times;</button>
+      <div class="modal-header">
+        <span class="pix-icon">💰</span>
+        <h3>Pagamento PIX</h3>
+      </div>
+      <div class="pix-content">
+        <p class="pix-instruction">Escaneie o QR Code ou copie o código abaixo:</p>
+
+        <div class="pix-qr-container">
+          <img id="pix-qr-image" src="" alt="QR Code PIX">
+        </div>
+
+        <div class="pix-code-container">
+          <label>Copia e Cola:</label>
+          <div class="pix-code-box">
+            <input type="text" id="pix-code-text" readonly>
+            <button type="button" class="btn-copy" id="btn-copy-pix">
+              <span id="copy-text">Copiar</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="pix-status" id="pix-status">
+          <span class="spinner"></span>
+          <span>Aguardando pagamento... <strong id="pix-countdown">60s</strong></span>
+        </div>
+
+        <div class="pix-expired" id="pix-expired" style="display:none;">
+          <span class="expired-icon">⏰</span>
+          <h4>Tempo Esgotado!</h4>
+          <p>O pagamento não foi confirmado. Os números foram liberados.</p>
+        </div>
+
+        <div class="pix-confirmed" id="pix-confirmed" style="display:none;">
+          <span class="confirmed-icon">✅</span>
+          <h4>Pagamento Confirmado!</h4>
+          <p>Seus números foram reservados com sucesso.</p>
+        </div>
+
+        <p class="pix-number-info">Números: <strong id="pix-numbers">—</strong> · Valor: <strong id="pix-value">R$
+            0,00</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <p>WinVerse &copy; 2026 — Todos os direitos reservados</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

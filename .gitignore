@@ -1,0 +1,7 @@
+node_modules/
+.env
+.env.example
+database.sqlite
+*.log
+docker-compose.yml
+.gemini/

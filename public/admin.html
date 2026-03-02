@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WinVerse — Painel Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ========== HEADER ========== -->
+    <header class="admin-header">
+        <div class="container">
+            <h1 class="admin-title">🎰 Win<span class="accent">Verse</span> — Admin</h1>
+            <a href="/" class="admin-link">← Voltar para a Rifa</a>
+        </div>
+    </header>
+
+    <!-- ========== STATS ========== -->
+    <section class="container">
+        <div class="stats-cards">
+            <div class="stat-card livres">
+                <div class="stat-value" id="stat-livres">-</div>
+                <div class="stat-label">Livres</div>
+            </div>
+            <div class="stat-card pendentes">
+                <div class="stat-value" id="stat-pendentes">-</div>
+                <div class="stat-label">Pendentes</div>
+            </div>
+            <div class="stat-card pagos">
+                <div class="stat-value" id="stat-pagos">-</div>
+                <div class="stat-label">Pagos</div>
+            </div>
+            <div class="stat-card total">
+                <div class="stat-value" id="stat-total">-</div>
+                <div class="stat-label">Arrecadado</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FILTROS ========== -->
+    <section class="container">
+        <div class="admin-filters">
+            <button class="filter-btn active" data-filter="todos">Todos</button>
+            <button class="filter-btn" data-filter="livre">Livres</button>
+            <button class="filter-btn" data-filter="pendente">Pendentes</button>
+            <button class="filter-btn" data-filter="pago">Pagos</button>
+        </div>
+    </section>
+
+    <!-- ========== TABELA ========== -->
+    <section class="container">
+        <div class="admin-table-wrapper">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Nº</th>
+                        <th>Status</th>
+                        <th>Nome</th>
+                        <th>WhatsApp</th>
+                        <th>Reservado em</th>
+                        <th>Pago em</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-table-body">
+                    <tr>
+                        <td colspan="7" style="text-align:center;padding:30px;color:var(--text-muted);">Carregando...
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ========== MODAL EDITAR NÚMERO ========== -->
+    <div class="modal-overlay" id="modal-edit">
+        <div class="modal">
+            <button class="modal-close" id="btn-close-edit">&times;</button>
+            <div class="modal-header">
+                <span class="modal-number" id="edit-number-badge">00</span>
+                <h3>Editar Número</h3>
+            </div>
+            <form id="form-edit" class="modal-form">
+                <div class="input-group">
+                    <label for="edit-status">Status</label>
+                    <select id="edit-status" class="input-select">
+                        <option value="livre">🟢 Livre</option>
+                        <option value="pendente">🟡 Pendente</option>
+                        <option value="pago">🔴 Pago</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="edit-name">Nome do comprador</label>
+                    <input type="text" id="edit-name" placeholder="Nome de quem comprou">
+                </div>
+                <div class="input-group">
+                    <label for="edit-whatsapp">WhatsApp</label>
+                    <input type="tel" id="edit-whatsapp" placeholder="(00) 00000-0000">
+                </div>
+                <button type="submit" class="btn-primary" id="btn-save-edit">
+                    💾 Salvar Alterações
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <p>WinVerse Admin &copy; 2026</p>
+        </div>
+    </footer>
+
+    <script src="admin.js"></script>
+</body>
+
+</html>
