@@ -36,9 +36,9 @@ const PIX_EXPIRATION_SECONDS = parseInt(process.env.PIX_EXPIRATION_SECONDS || '6
 // =============================================
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: process.env.DATABASE_URL?.includes('render.com')
-    ? { rejectUnauthorized: false }
-    : false
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 async function initDB() {
